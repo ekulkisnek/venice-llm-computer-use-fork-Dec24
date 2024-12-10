@@ -101,10 +101,18 @@ async def sampling_loop(
         if only_n_most_recent_images:
             _maybe_filter_to_n_most_recent_images(messages, only_n_most_recent_images)
 
+        # Log the complete API request structure
+        logger.info("\n=== API Request Structure ===")
+        logger.info(json.dumps({
+            "provider": provider,
+            "model": model,
+            "system": system,
+            "messages": messages,
+            "tools": tool_collection.to_params(),
+            "max_tokens": max_tokens
+        }, indent=2, default=str))
+
         # Call the API
-        # we use raw_response to provide debug information to streamlit. Your
-        # implementation may be able call the SDK directly with:
-        # `response = client.messages.create(...)` instead.
         if provider == APIProvider.ANTHROPIC:
             raw_response = Anthropic(
                 api_key=api_key
@@ -142,12 +150,21 @@ async def sampling_loop(
 
         response = raw_response.parse()
 
-        # Log API response structure
-        logger.info("\n=== Anthropic API Response Structure ===")
+        # Log complete API response structure
+        logger.info("\n=== API Response Structure ===")
+        logger.info("Raw Response Headers:")
+        logger.info(json.dumps(dict(raw_response.headers), indent=2))
+        logger.info("\nParsed Response:")
         logger.info(json.dumps({
+            "id": response.id,
+            "type": response.type,
+            "role": response.role,
             "content": response.content,
             "model": response.model,
-            "role": response.role
+            "usage": response.usage if hasattr(response, "usage") else None,
+            "system": getattr(response, "system", None),
+            "stop_reason": getattr(response, "stop_reason", None),
+            "stop_sequence": getattr(response, "stop_sequence", None)
         }, indent=2, default=str))
 
         messages.append(
