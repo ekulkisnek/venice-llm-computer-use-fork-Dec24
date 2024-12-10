@@ -12,8 +12,8 @@ from typing import Any, cast
 
 # Configure logging
 logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO,
+    format='%(message)s',
     handlers=[
         logging.FileHandler('anthropic_api.log'),
         logging.StreamHandler()
@@ -110,13 +110,13 @@ async def sampling_loop(
         if only_n_most_recent_images:
             _maybe_filter_to_n_most_recent_images(messages, only_n_most_recent_images)
 
-        # Log the request parameters
-        logger.debug("API Request Parameters:")
-        logger.debug(f"Provider: {provider}")
-        logger.debug(f"Model: {model}")
-        logger.debug(f"System prompt: {system}")
-        logger.debug(f"Messages: {json.dumps(messages, indent=2)}")
-        logger.debug(f"Tools: {json.dumps(tool_collection.to_params(), indent=2)}")
+        # Log API request structure
+        logger.info("\n=== Anthropic API Request Structure ===")
+        logger.info(json.dumps({
+            "messages": messages,
+            "system": system,
+            "tools": tool_collection.to_params()
+        }, indent=2))
 
         # Call the API
         # we use raw_response to provide debug information to streamlit. Your
@@ -159,11 +159,13 @@ async def sampling_loop(
 
         response = raw_response.parse()
         
-        # Log the API response
-        logger.debug("API Response:")
-        logger.debug(f"Response content: {json.dumps(response.content, indent=2, default=str)}")
-        logger.debug(f"Response model: {response.model}")
-        logger.debug(f"Response role: {response.role}")
+        # Log API response structure
+        logger.info("\n=== Anthropic API Response Structure ===")
+        logger.info(json.dumps({
+            "content": response.content,
+            "model": response.model,
+            "role": response.role
+        }, indent=2, default=str))
 
         messages.append(
             {
@@ -176,21 +178,10 @@ async def sampling_loop(
         for content_block in cast(list[BetaContentBlock], response.content):
             output_callback(content_block)
             if content_block.type == "tool_use":
-                logger.debug("Tool Execution:")
-                logger.debug(f"Tool name: {content_block.name}")
-                logger.debug(f"Tool input: {json.dumps(content_block.input, indent=2)}")
-                
                 result = await tool_collection.run(
                     name=content_block.name,
                     tool_input=cast(dict[str, Any], content_block.input),
                 )
-                
-                logger.debug("Tool Result:")
-                logger.debug(f"Output: {result.output}")
-                logger.debug(f"Error: {result.error}")
-                logger.debug(f"System: {result.system}")
-                if result.base64_image:
-                    logger.debug("Base64 image present in result")
                 tool_result_content.append(
                     _make_api_tool_result(result, content_block.id)
                 )
