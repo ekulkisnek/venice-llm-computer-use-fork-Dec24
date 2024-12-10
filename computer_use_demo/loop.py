@@ -14,7 +14,7 @@ from logging import getLogger
 
 from anthropic import Anthropic, AnthropicBedrock, AnthropicVertex, APIResponse
 
-def truncate_string(s, max_length=500):
+def truncate_string(s, max_length=4000):
     return s if len(s) <= max_length else s[:max_length] + "... [truncated]"
 
 def setup_logging():
