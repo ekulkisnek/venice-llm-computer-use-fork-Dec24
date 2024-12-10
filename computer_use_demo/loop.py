@@ -9,16 +9,32 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Any, cast
 import logging
+from logging.handlers import RotatingFileHandler
 from logging import getLogger
 
 from anthropic import Anthropic, AnthropicBedrock, AnthropicVertex, APIResponse
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
+def truncate_string(s, max_length=500):
+    return s if len(s) <= max_length else s[:max_length] + "... [truncated]"
+
+def setup_logging():
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    
+    # Console handler
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+    
+    # File handler
+    file_handler = RotatingFileHandler('anthropic_api.log', maxBytes=1024*1024, backupCount=5)
+    file_handler.setFormatter(formatter)
+    
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    logger.addHandler(console_handler)
+    logger.addHandler(file_handler)
+    return logger
+
+logger = setup_logging()
 from anthropic.types import (
     MessageParam,
     ToolParam,
@@ -111,14 +127,14 @@ async def sampling_loop(
 
         # Log the complete API request structure
         logger.info("\n=== API Request Structure ===")
-        logger.info(json.dumps({
+        logger.info(truncate_string(json.dumps({
             "provider": provider,
             "model": model,
             "system": system,
             "messages": messages,
             "tools": tool_collection.to_params(),
             "max_tokens": max_tokens
-        }, indent=2, default=str))
+        }, indent=2, default=str)))
 
         # Call the API
         if provider == APIProvider.ANTHROPIC:
@@ -161,9 +177,9 @@ async def sampling_loop(
         # Log complete API response structure
         logger.info("\n=== API Response Structure ===")
         logger.info("Raw Response Headers:")
-        logger.info(json.dumps(dict(raw_response.headers), indent=2))
+        logger.info(truncate_string(json.dumps(dict(raw_response.headers), indent=2)))
         logger.info("\nParsed Response:")
-        logger.info(json.dumps({
+        logger.info(truncate_string(json.dumps({
             "id": response.id,
             "type": response.type,
             "role": response.role,
@@ -173,7 +189,7 @@ async def sampling_loop(
             "system": getattr(response, "system", None),
             "stop_reason": getattr(response, "stop_reason", None),
             "stop_sequence": getattr(response, "stop_sequence", None)
-        }, indent=2, default=str))
+        }, indent=2, default=str)))
 
         messages.append(
             {
@@ -289,4 +305,4 @@ def _make_api_tool_result(
 def _maybe_prepend_system_tool_result(result: ToolResult, result_text: str):
     if result.system:
         result_text = f"<system>{result.system}</system>\n{result_text}"
-    return result_text
+    return truncate_string(result_text)
