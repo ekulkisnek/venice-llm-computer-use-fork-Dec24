@@ -1,35 +1,29 @@
 import json
 import requests
+import uuid
 from typing import List, Dict, Any, cast
-from uuid import uuid4
 from anthropic.types.beta import (
+    BetaMessage,
     BetaMessageParam,
     BetaContentBlockParam,
-    BetaMessage,
     BetaTextBlockParam,
+    BetaUsage,
 )
 from anthropic import APIResponse
 
-
 class VeniceClient:
     """
-    Adapter for Venice API that mimics the Anthropic interface.
+    Venice adapter that mimics the Anthropic API interface.
+    Given Anthropic-style inputs (system, messages, tools), it returns an Anthropic-compatible APIResponse.
     """
 
-    # Hardcoded API key
+    # A hardcoded API key for Venice. In practice, this should be set elsewhere or passed in.
     API_KEY = "es-6Kh8w7VEnnX7rpCzm7lVlnGb-J8AgGX1tcOC0d9"
+    VENICE_API_URL = "https://api.venice.ai/api/v1/chat/completions"
 
     def __init__(self, model: str, max_tokens: int = 4096):
-        """
-        Initialize the Venice client.
-
-        Args:
-            model (str): Venice model to use.
-            max_tokens (int): Maximum tokens to return in the response.
-        """
         self.model = model
         self.max_tokens = max_tokens
-        self.api_url = "https://api.venice.ai/api/v1/chat/completions"
         self.headers = {
             "Authorization": f"Bearer {self.API_KEY}",
             "Content-Type": "application/json",
@@ -39,148 +33,170 @@ class VeniceClient:
         self,
         messages: List[BetaMessageParam],
         system: str,
-        tools: List[Any] = None,  # Tools are ignored for now
+        tools: List[Any] = None
     ) -> APIResponse[BetaMessage]:
         """
-        Sends a Venice API request and returns a response in Anthropic-compatible format.
+        Send Anthropic-style messages to Venice and get an Anthropic-compatible response.
 
         Args:
             messages (List[BetaMessageParam]): Anthropic-style input messages.
-            system (str): System prompt to prepend to the conversation.
-            tools (List[Any]): Currently unused.
+            system (str): The Anthropic system prompt string.
+            tools (List[Any]): Not currently used by Venice, but required by the interface.
 
         Returns:
-            APIResponse[BetaMessage]: Anthropic-compatible response object.
+            APIResponse[BetaMessage]: A response that looks like what Anthropic returns.
         """
-        # Translate Anthropic messages to Venice's OpenAI-like format
+        # Convert Anthropic messages into Venice-compatible format
         venice_messages = self._convert_messages(messages, system)
 
-        # Prepare the request payload
+        # Prepare request payload
         request_payload = {
             "model": self.model,
             "messages": venice_messages,
             "max_tokens": self.max_tokens,
-            "venice_parameters": self._get_venice_parameters(),
+            "venice_parameters": {
+                "include_venice_system_prompt": False
+            },
         }
 
-        # Make the HTTP request
+        # Make the Venice API request
         try:
-            response = requests.post(
-                self.api_url, headers=self.headers, json=request_payload
+            resp = requests.post(
+                self.VENICE_API_URL, headers=self.headers, json=request_payload
             )
-            response.raise_for_status()
+            resp.raise_for_status()
         except requests.RequestException as e:
             raise RuntimeError(f"Venice API request failed: {e}")
 
-        # Parse the Venice response
-        venice_response = response.json()
+        venice_response = resp.json()
 
         # Convert Venice response to Anthropic-compatible APIResponse
-        return self._convert_response(venice_response, request_payload)
+        return self._convert_response(venice_response, request_payload, resp)
 
     def _convert_messages(
-        self, messages: List[BetaMessageParam], system: str
+        self,
+        messages: List[BetaMessageParam],
+        system: str
     ) -> List[Dict[str, str]]:
         """
-        Convert Anthropic-style messages into Venice's format.
+        Convert Anthropic messages to Venice's OpenAI-like format.
 
-        Args:
-            messages (List[BetaMessageParam]): Anthropic-style input messages.
-            system (str): System prompt to prepend.
-
-        Returns:
-            List[Dict[str, str]]: Venice-compatible message format.
-        """
-        venice_messages = [{"role": "system", "content": system}]
-        for message in messages:
-            content_text = self._extract_text_content(message["content"])
-            venice_messages.append({"role": message["role"], "content": content_text})
-        return venice_messages
-
-    def _extract_text_content(
-        self, content_blocks: Any
-    ) -> str:
-        """
-        Extract text content from Anthropic-style content blocks.
-
-        Args:
-            content_blocks (Any): Content blocks from a message.
-
-        Returns:
-            str: Combined text content.
-        """
-        if isinstance(content_blocks, list):
-            return "".join(
-                block["text"]
-                if isinstance(block, dict) and block.get("type") == "text"
-                else block.text if hasattr(block, "text") else ""
-                for block in content_blocks
-            )
-        elif hasattr(content_blocks, "text"):
-            return content_blocks.text  # Handle single TextBlock
-        elif isinstance(content_blocks, dict) and "text" in content_blocks:
-            return content_blocks["text"]  # Handle single dictionary block
-        else:
-            return str(content_blocks)  # Fallback to string representation
-
-    def _get_venice_parameters(self) -> Dict[str, Any]:
-        """
-        Helper method to generate Venice-specific parameters.
-
-        Returns:
-            Dict[str, Any]: Venice parameters.
-        """
-        return {
-            "include_venice_system_prompt": False,  # System prompt already included
+        Anthropic messages are a list of dicts like:
+        {
+          "role": "user" | "assistant" | "system",
+          "content": [BetaTextBlockParam or similar...]
         }
 
+        Venice expects:
+        [
+          {"role": "system", "content": "<system prompt>"},
+          {"role": "user", "content": "<user text>"},
+          {"role": "assistant", "content": "<assistant text>"}
+        ]
+
+        We prepend the Anthropic system prompt as a "system" message.
+        """
+        venice_messages = []
+        if system:
+            venice_messages.append({"role": "system", "content": system})
+
+        for msg in messages:
+            # Extract all text from the message content
+            msg_text = self._extract_text_from_content(msg["content"])
+            # Venice roles match Anthropic ("system", "user", "assistant"),
+            # so we can reuse them directly.
+            venice_messages.append({"role": msg["role"], "content": msg_text})
+
+        return venice_messages
+
+    def _extract_text_from_content(self, content_blocks: Any) -> str:
+        """
+        Extract text from the Anthropic message content blocks.
+
+        Anthropic content blocks are usually a list of dicts with {"type": "text", "text": "..."}.
+        We join them into a single string for Venice.
+        """
+        if isinstance(content_blocks, list):
+            # Filter and join all text blocks
+            return "".join(
+                block["text"]
+                for block in content_blocks
+                if isinstance(block, dict) and block.get("type") == "text"
+            )
+        elif isinstance(content_blocks, dict):
+            # Single block scenario
+            return content_blocks.get("text", "")
+        else:
+            # If it's something else, fallback to str
+            return str(content_blocks)
+
     def _convert_response(
-        self, venice_response: Dict[str, Any], request_payload: Dict[str, Any]
+        self,
+        venice_response: Dict[str, Any],
+        request_payload: Dict[str, Any],
+        original_response: requests.Response
     ) -> APIResponse[BetaMessage]:
         """
-        Convert Venice response into an Anthropic-compatible APIResponse.
+        Convert the Venice JSON response into an Anthropic-compatible APIResponse[BetaMessage].
 
-        Args:
-            venice_response (Dict[str, Any]): JSON response from Venice API.
-            request_payload (Dict[str, Any]): Original request payload.
+        Anthropic's BetaMessage has a structure like:
+        {
+          "role": "assistant",
+          "content": [ { "type": "text", "text": "..."} ],
+          "model": "modelname",
+          "id": "some_uuid",
+          "type": "message",
+          "usage": BetaUsage(...),
+          "system": null,
+          "stop_reason": ...,
+          "stop_sequence": ...
+        }
 
-        Returns:
-            APIResponse[BetaMessage]: Anthropic-compatible response object.
+        We'll mimic that here.
         """
-        assistant_content = venice_response.get("choices", [{}])[0].get(
-            "message", {}
-        ).get("content", "[Error: No content]")
+        # Extract assistant content from Venice
+        assistant_content = venice_response.get("choices", [{}])[0].get("message", {}).get("content", "")
 
-        # Create a mock BetaMessage
-        beta_message = BetaMessage(
-            id=str(uuid4()),  # Unique ID for the message
-            role="assistant",
-            content=[{"type": "text", "text": assistant_content}],
-            model=self.model,
-            type="message",
-            usage={
-                "input_tokens": venice_response.get("usage", {}).get("prompt_tokens", 0),
-                "output_tokens": venice_response.get("usage", {}).get("completion_tokens", 0),
-                "total_tokens": venice_response.get("usage", {}).get("total_tokens", 0),
-            },
+        # Venice usage fields: Venice often provides usage similar to OpenAI style:
+        # {"usage": {"prompt_tokens": X, "completion_tokens": Y, "total_tokens": Z}}
+        usage_data = venice_response.get("usage", {})
+        usage = BetaUsage(
+            cache_creation_input_tokens=None,
+            cache_read_input_tokens=None,
+            input_tokens=usage_data.get("prompt_tokens", 0),
+            output_tokens=usage_data.get("completion_tokens", 0)
         )
 
-        # Create proper response and request objects
-        request = requests.Request(
-            method='POST',
-            url=self.api_url,
+        # Construct a BetaMessage
+        beta_message = BetaMessage(
+            id=str(uuid.uuid4()),
+            type="message",
+            role="assistant",
+            content=cast(List[BetaContentBlockParam], [{"type": "text", "text": assistant_content}]),
+            model=request_payload["model"],
+            usage=usage,
+            system=None,
+            stop_reason="end_turn",  # Venice doesn't provide stop_reason: choose a default, or None if unknown
+            stop_sequence=None
+        )
+
+        # Build a mock request object for APIResponse
+        prepared_request = requests.Request(
+            method="POST",
+            url=self.VENICE_API_URL,
             headers=self.headers,
-            json=request_payload
+            json=request_payload,
         ).prepare()
 
-        response = requests.Response()
-        response.status_code = 200
-        response._content = json.dumps(venice_response).encode()
-        response.headers = {'Content-Type': 'application/json'}
-        
-        return APIResponse._construct(
-            response=response,
-            parsed=beta_message,
-            request=request
-        )
+        # Build a mock response object for APIResponse
+        # We already have original_response from requests, we can reuse it:
+        # Just ensure content is the venice_response JSON.
+        # Note: `original_response` is a requests.Response, which already has `status_code`, `headers`, etc.
+        # We can simply reuse it. But we need to ensure the content is accessible, which it should be.
 
+        # Construct the APIResponse object
+        return APIResponse.create(
+            response=original_response,
+            parsed=beta_message,
+            request=prepared_request
+        )
