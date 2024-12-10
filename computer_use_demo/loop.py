@@ -3,10 +3,23 @@ Agentic sampling loop that calls the Anthropic API and local implenmentation of 
 """
 
 import platform
+import logging
+import json
 from collections.abc import Callable
 from datetime import datetime
 from enum import StrEnum
 from typing import Any, cast
+
+# Configure logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('anthropic_api.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger('anthropic_api')
 
 from anthropic import Anthropic, AnthropicBedrock, AnthropicVertex, APIResponse
 from anthropic.types import (
@@ -24,6 +37,7 @@ from anthropic.types.beta import (
     BetaToolParam,
     BetaToolResultBlockParam,
 )
+from .venice_adapter import VeniceClient
 
 from .tools import BashTool, ComputerTool, EditTool, ToolCollection, ToolResult
 
@@ -34,12 +48,14 @@ class APIProvider(StrEnum):
     ANTHROPIC = "anthropic"
     BEDROCK = "bedrock"
     VERTEX = "vertex"
+    VENICE = "venice"
 
 
 PROVIDER_TO_DEFAULT_MODEL_NAME: dict[APIProvider, str] = {
     APIProvider.ANTHROPIC: "claude-3-5-sonnet-20241022",
     APIProvider.BEDROCK: "anthropic.claude-3-5-sonnet-20241022-v2:0",
     APIProvider.VERTEX: "claude-3-5-sonnet-v2@20241022",
+    APIProvider.VENICE: "most_intelligent",
 }
 
 
@@ -94,6 +110,14 @@ async def sampling_loop(
         if only_n_most_recent_images:
             _maybe_filter_to_n_most_recent_images(messages, only_n_most_recent_images)
 
+        # Log the request parameters
+        logger.debug("API Request Parameters:")
+        logger.debug(f"Provider: {provider}")
+        logger.debug(f"Model: {model}")
+        logger.debug(f"System prompt: {system}")
+        logger.debug(f"Messages: {json.dumps(messages, indent=2)}")
+        logger.debug(f"Tools: {json.dumps(tool_collection.to_params(), indent=2)}")
+
         # Call the API
         # we use raw_response to provide debug information to streamlit. Your
         # implementation may be able call the SDK directly with:
@@ -127,10 +151,19 @@ async def sampling_loop(
                 tools=cast(list[ToolParam], tool_collection.to_params()),
                 extra_body={"anthropic_beta": [BETA_FLAG]},
             )
+        elif provider == APIProvider.VENICE:  # Add Venice logic
+            venice_client = VeniceClient(model=model, max_tokens=max_tokens)
+            raw_response = venice_client.create(messages=messages, system=system, tools=tool_collection.to_params())
 
         api_response_callback(cast(APIResponse[BetaMessage], raw_response))
 
         response = raw_response.parse()
+        
+        # Log the API response
+        logger.debug("API Response:")
+        logger.debug(f"Response content: {json.dumps(response.content, indent=2, default=str)}")
+        logger.debug(f"Response model: {response.model}")
+        logger.debug(f"Response role: {response.role}")
 
         messages.append(
             {
@@ -143,10 +176,21 @@ async def sampling_loop(
         for content_block in cast(list[BetaContentBlock], response.content):
             output_callback(content_block)
             if content_block.type == "tool_use":
+                logger.debug("Tool Execution:")
+                logger.debug(f"Tool name: {content_block.name}")
+                logger.debug(f"Tool input: {json.dumps(content_block.input, indent=2)}")
+                
                 result = await tool_collection.run(
                     name=content_block.name,
                     tool_input=cast(dict[str, Any], content_block.input),
                 )
+                
+                logger.debug("Tool Result:")
+                logger.debug(f"Output: {result.output}")
+                logger.debug(f"Error: {result.error}")
+                logger.debug(f"System: {result.system}")
+                if result.base64_image:
+                    logger.debug("Base64 image present in result")
                 tool_result_content.append(
                     _make_api_tool_result(result, content_block.id)
                 )
