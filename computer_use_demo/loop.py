@@ -9,6 +9,7 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Any, cast
 import logging
+from logging import getLogger
 
 from anthropic import Anthropic, AnthropicBedrock, AnthropicVertex, APIResponse
 
