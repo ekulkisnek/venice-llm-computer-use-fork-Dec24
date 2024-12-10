@@ -8,9 +8,16 @@ from collections.abc import Callable
 from datetime import datetime
 from enum import StrEnum
 from typing import Any, cast
-from logging import getLogger
+import logging
 
 from anthropic import Anthropic, AnthropicBedrock, AnthropicVertex, APIResponse
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 from anthropic.types import (
     MessageParam,
     ToolParam,
