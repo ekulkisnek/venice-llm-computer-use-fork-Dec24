@@ -195,8 +195,12 @@ class VeniceClient:
         # We can simply reuse it. But we need to ensure the content is accessible, which it should be.
 
         # Construct the APIResponse object
-        return APIResponse.create(
-            response=original_response,
+        return APIResponse(
+            raw=venice_response,
+            headers=dict(original_response.headers),
+            status_code=original_response.status_code,
+            request=prepared_request,
+            stream=False,
+            delta_processor=None,
             parsed=beta_message,
-            request=prepared_request
         )
