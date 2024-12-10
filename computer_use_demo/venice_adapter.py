@@ -165,26 +165,22 @@ class VeniceClient:
             },
         )
 
-        # Create a mock response object that matches the expected structure
-        class MockResponse:
-            def __init__(self):
-                self.status_code = 200
-                self.headers = {}
-                self.text = json.dumps(venice_response)
+        # Create proper response and request objects
+        request = requests.Request(
+            method='POST',
+            url=self.api_url,
+            headers=self.headers,
+            json=request_payload
+        ).prepare()
 
-            def json(self):
-                return venice_response
-
-        class MockRequest:
-            method = 'POST'
-            url = 'https://api.venice.ai/api/v1/chat/completions'
-            headers = {'Content-Type': 'application/json'}
-            
-            def read(self):
-                return json.dumps(request_payload).encode()
-
-        response = MockResponse()
-        request = MockRequest()
+        response = requests.Response()
+        response.status_code = 200
+        response._content = json.dumps(venice_response).encode()
+        response.headers = {'Content-Type': 'application/json'}
         
-        return APIResponse(_raw_response=response, _parsed=beta_message, _raw_request=request)
+        return APIResponse._construct(
+            response=response,
+            parsed=beta_message,
+            request=request
+        )
 
