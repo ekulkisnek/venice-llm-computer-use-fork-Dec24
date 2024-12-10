@@ -3,23 +3,12 @@ Agentic sampling loop that calls the Anthropic API and local implenmentation of 
 """
 
 import platform
-import logging
 import json
 from collections.abc import Callable
 from datetime import datetime
 from enum import StrEnum
 from typing import Any, cast
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(message)s',
-    handlers=[
-        logging.FileHandler('anthropic_api.log'),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger('anthropic_api')
+from logging import getLogger
 
 from anthropic import Anthropic, AnthropicBedrock, AnthropicVertex, APIResponse
 from anthropic.types import (
@@ -81,6 +70,8 @@ SYSTEM_PROMPT = f"""<SYSTEM_CAPABILITY>
 </IMPORTANT>"""
 
 
+logger = getLogger(__name__)
+
 async def sampling_loop(
     *,
     model: str,
@@ -109,14 +100,6 @@ async def sampling_loop(
     while True:
         if only_n_most_recent_images:
             _maybe_filter_to_n_most_recent_images(messages, only_n_most_recent_images)
-
-        # Log API request structure
-        logger.info("\n=== Anthropic API Request Structure ===")
-        logger.info(json.dumps({
-            "messages": messages,
-            "system": system,
-            "tools": tool_collection.to_params()
-        }, indent=2))
 
         # Call the API
         # we use raw_response to provide debug information to streamlit. Your
@@ -158,7 +141,7 @@ async def sampling_loop(
         api_response_callback(cast(APIResponse[BetaMessage], raw_response))
 
         response = raw_response.parse()
-        
+
         # Log API response structure
         logger.info("\n=== Anthropic API Response Structure ===")
         logger.info(json.dumps({
