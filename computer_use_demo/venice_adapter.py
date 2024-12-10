@@ -175,16 +175,16 @@ class VeniceClient:
             def json(self):
                 return venice_response
 
-        mock_request = type('MockRequest', (), {
-            'method': 'POST',
-            'url': 'https://api.venice.ai/api/v1/chat/completions',
-            'headers': {'Content-Type': 'application/json'},
-            'read': lambda: json.dumps(request_payload).encode()
-        })()
+        class MockRequest:
+            method = 'POST'
+            url = 'https://api.venice.ai/api/v1/chat/completions'
+            headers = {'Content-Type': 'application/json'}
+            
+            def read(self):
+                return json.dumps(request_payload).encode()
 
-        return APIResponse(
-            _raw_response=MockResponse(),
-            _parsed=beta_message,
-            _raw_request=mock_request
-        )
+        response = MockResponse()
+        request = MockRequest()
+        
+        return APIResponse(_raw_response=response, _parsed=beta_message, _raw_request=request)
 
