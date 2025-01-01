@@ -656,3 +656,36 @@ Parsed Response:
   ],
   "max_tokens": 4096
 }
+2025-01-01 17:47:17,088 - INFO - 
+=== API Request Structure ===
+2025-01-01 17:47:17,109 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Wednesday, January 1, 2025.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='hi venice', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
