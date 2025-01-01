@@ -1,0 +1,658 @@
+2024-12-10 22:57:08,150 - INFO - 
+=== API Request Structure ===
+2024-12-10 22:57:08,151 - INFO - {
+  "provider": "anthropic",
+  "model": "claude-3-5-sonnet-20241022",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output ver... [truncated]
+2024-12-10 22:57:10,337 - INFO - 
+=== API Response Structure ===
+2024-12-10 22:57:10,339 - INFO - Raw Response Headers:
+2024-12-10 22:57:10,339 - INFO - {
+  "date": "Tue, 10 Dec 2024 22:57:10 GMT",
+  "content-type": "application/json",
+  "transfer-encoding": "chunked",
+  "connection": "keep-alive",
+  "anthropic-ratelimit-requests-limit": "50",
+  "anthropic-ratelimit-requests-remaining": "49",
+  "anthropic-ratelimit-requests-reset": "2024-12-10T22:57:09Z",
+  "anthropic-ratelimit-input-tokens-limit": "40000",
+  "anthropic-ratelimit-input-tokens-remaining": "39000",
+  "anthropic-ratelimit-input-tokens-reset": "2024-12-10T22:57:12Z",
+  "anthropic-ra... [truncated]
+2024-12-10 22:57:10,340 - INFO - 
+Parsed Response:
+2024-12-10 22:57:10,341 - INFO - {
+  "id": "msg_01XDgDgDpVAMhiiQNGLYRn3T",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    "BetaTextBlock(text=\"I'll help you open Google in Firefox. Let me do this step by step:\\n\\n1. First, let me take a screenshot to see the current state of the desktop:\", type='text')",
+    "BetaToolUseBlock(id='toolu_01MCB9EuMUKvU7EopBj2oL88', input={'action': 'screenshot'}, name='computer', type='tool_use')"
+  ],
+  "model": "claude-3-5-sonnet-20241022",
+  "usage": "BetaUsage(cache_creatio... [truncated]
+2024-12-10 22:57:10,819 - INFO - 
+=== API Request Structure ===
+2024-12-10 22:57:10,820 - INFO - {
+  "provider": "anthropic",
+  "model": "claude-3-5-sonnet-20241022",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output ver... [truncated]
+2024-12-10 22:57:14,770 - INFO - 
+=== API Response Structure ===
+2024-12-10 22:57:14,772 - INFO - Raw Response Headers:
+2024-12-10 22:57:14,772 - INFO - {
+  "date": "Tue, 10 Dec 2024 22:57:14 GMT",
+  "content-type": "application/json",
+  "transfer-encoding": "chunked",
+  "connection": "keep-alive",
+  "anthropic-ratelimit-requests-limit": "50",
+  "anthropic-ratelimit-requests-remaining": "49",
+  "anthropic-ratelimit-requests-reset": "2024-12-10T22:57:12Z",
+  "anthropic-ratelimit-input-tokens-limit": "40000",
+  "anthropic-ratelimit-input-tokens-remaining": "39000",
+  "anthropic-ratelimit-input-tokens-reset": "2024-12-10T22:57:16Z",
+  "anthropic-ra... [truncated]
+2024-12-10 22:57:14,773 - INFO - 
+Parsed Response:
+2024-12-10 22:57:14,773 - INFO - {
+  "id": "msg_01C9U7AKvQ7V5JkgLpXhoJrU",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    "BetaTextBlock(text=\"Now I'll click on the address bar and type in google.com:\", type='text')",
+    "BetaToolUseBlock(id='toolu_01RKY6w4gTGd1KXfxEmfqvJd', input={'action': 'mouse_move', 'coordinate': [257, 85]}, name='computer', type='tool_use')",
+    "BetaToolUseBlock(id='toolu_013awvtSDP7N3kC32Nf3TYUN', input={'action': 'left_click'}, name='computer', type='tool_use')",
+    "BetaToolUseBl... [truncated]
+2024-12-10 22:57:21,384 - INFO - 
+=== API Request Structure ===
+2024-12-10 22:57:21,385 - INFO - {
+  "provider": "anthropic",
+  "model": "claude-3-5-sonnet-20241022",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output ver... [truncated]
+2024-12-10 22:57:24,116 - INFO - 
+=== API Response Structure ===
+2024-12-10 22:57:24,117 - INFO - Raw Response Headers:
+2024-12-10 22:57:24,117 - INFO - {
+  "date": "Tue, 10 Dec 2024 22:57:24 GMT",
+  "content-type": "application/json",
+  "transfer-encoding": "chunked",
+  "connection": "keep-alive",
+  "anthropic-ratelimit-requests-limit": "50",
+  "anthropic-ratelimit-requests-remaining": "49",
+  "anthropic-ratelimit-requests-reset": "2024-12-10T22:57:22Z",
+  "anthropic-ratelimit-input-tokens-limit": "40000",
+  "anthropic-ratelimit-input-tokens-remaining": "37000",
+  "anthropic-ratelimit-input-tokens-reset": "2024-12-10T22:57:28Z",
+  "anthropic-ra... [truncated]
+2024-12-10 22:57:24,121 - INFO - 
+Parsed Response:
+2024-12-10 22:57:24,122 - INFO - {
+  "id": "msg_01LUcKvK8rJ4yEk6eQLMkK65",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    "BetaTextBlock(text=\"Great! Google is now open and ready to use. The Google search page is displayed with its search bar and typical features. You can now perform any searches or use any of Google's services. Is there anything specific you'd like to search for?\", type='text')"
+  ],
+  "model": "claude-3-5-sonnet-20241022",
+  "usage": "BetaUsage(cache_creation_input_tokens=None, cache_read_in... [truncated]
+2024-12-10 22:59:02,688 - INFO - 
+=== API Request Structure ===
+2024-12-10 22:59:02,692 - INFO - {
+  "provider": "anthropic",
+  "model": "claude-3-5-sonnet-20241022",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='open google', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
+2024-12-10 22:59:05,684 - INFO - 
+=== API Response Structure ===
+2024-12-10 22:59:05,685 - INFO - Raw Response Headers:
+2024-12-10 22:59:05,686 - INFO - {
+  "date": "Tue, 10 Dec 2024 22:59:05 GMT",
+  "content-type": "application/json",
+  "transfer-encoding": "chunked",
+  "connection": "keep-alive",
+  "anthropic-ratelimit-requests-limit": "50",
+  "anthropic-ratelimit-requests-remaining": "49",
+  "anthropic-ratelimit-requests-reset": "2024-12-10T22:59:04Z",
+  "anthropic-ratelimit-input-tokens-limit": "40000",
+  "anthropic-ratelimit-input-tokens-remaining": "39000",
+  "anthropic-ratelimit-input-tokens-reset": "2024-12-10T22:59:06Z",
+  "anthropic-ratelimit-output-tokens-limit": "8000",
+  "anthropic-ratelimit-output-tokens-remaining": "8000",
+  "anthropic-ratelimit-output-tokens-reset": "2024-12-10T22:59:05Z",
+  "anthropic-ratelimit-tokens-limit": "48000",
+  "anthropic-ratelimit-tokens-remaining": "47000",
+  "anthropic-ratelimit-tokens-reset": "2024-12-10T22:59:05Z",
+  "request-id": "req_01R4f5mEg694P4vYTDNc5t7T",
+  "via": "1.1 google",
+  "cf-cache-status": "DYNAMIC",
+  "x-robots-tag": "none",
+  "server": "cloudflare",
+  "cf-ray": "8f00d7d6aed0deea-SEA",
+  "content-encoding": "gzip"
+}
+2024-12-10 22:59:05,687 - INFO - 
+Parsed Response:
+2024-12-10 22:59:05,687 - INFO - {
+  "id": "msg_01EtkNDc8dC7C5uZJGRyXyRa",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    "BetaTextBlock(text=\"I'll help you open Google in Firefox. I'll follow these steps:\\n1. Take a screenshot to see the desktop\\n2. Look for and click on Firefox\\n3. Once Firefox opens, navigate to Google\", type='text')",
+    "BetaToolUseBlock(id='toolu_01XWMiDGJdoejjfVxzZusvpP', input={'action': 'screenshot'}, name='computer', type='tool_use')"
+  ],
+  "model": "claude-3-5-sonnet-20241022",
+  "usage": "BetaUsage(cache_creation_input_tokens=None, cache_read_input_tokens=None, input_tokens=2554, output_tokens=96)",
+  "system": null,
+  "stop_reason": "tool_use",
+  "stop_sequence": null
+}
+2024-12-10 22:59:06,008 - INFO - 
+=== API Request Structure ===
+2024-12-10 22:59:06,010 - INFO - {
+  "provider": "anthropic",
+  "model": "claude-3-5-sonnet-20241022",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='open google', type='text')"
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": [
+        "BetaTextBlock(text=\"I'll help you open Google in Firefox. I'll follow these steps:\\n1. Take a screenshot to see the desktop\\n2. Look for and click on Firefox\\n3. Once Firefox opens, navigate to Google\", type='text')",
+        "BetaToolUseBlock(id='toolu_01XWMiDGJdoejjfVxzZusvpP', input={'action': 'screenshot'}, name='computer', type='tool_use')"
+      ]
+    },
+    {
+      "content": [
+        {
+          "type": "tool_result",
+          "content": [
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/png",
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAdYAAALYCAIAAABOmkTgAAAAA3NCSVQICAjb4U/gAAAAGXRFWHRTb2Z0d2FyZQBnbm9tZS1zY3JlZW5zaG907wO/PgAAIABJREFUeJzs3XdcE/f/B/BPBgmQMGQPWQIyBFEQcaA4ceCe2CqOqlVsrW3Vb4d7tP6ss1a0ohU37okiTnAgU1BEhuy9NyFk/f64Nj0vIQQIXLDv58OHD/K5y93nLskrn/vc5y6UixcvIgAAAGSgd8E65ow/i/1xKXR+F6wOAAC6i66IYAAAUHJz5sxp61MuXbqEfzr+oTyrw+antnWt7SEUIZEIiURzRgd1xeoAAKBrXbp0Sf4Qx+d1p7eC5ww6inhMRKMihJBA1NmrAwCA9mlrM1by6fK0hQnzKDKC51SvuqR9eE7D78gAIYQuNaxGCKFaDhKKEFPl73kGH0OIeSlyIf6JkydPVlNTQwgJhcKGhoaCgoL379/zeDxFVaxnz54MBiMzM1NRC+w4IyMjBwcHbW1thFBtbW1BQUFKSkqXrX3UqFFNTU0vX77ssjW2T8+ePYcMGdLc3Hzz5k2RSIQQsrCw8PDwaG5uvnHjhqLWInVvjBw5Ul9fHyEkEokuX75MeIrsqR2hra3t7e1NKMzPzydUr/NeQRMTk759+7LZbCqVGhERUVxcrPBVfMJaTWHJqQqL4Dlv1yFN6hzet4jRg5PTEyHEPOWub52bGPOVtlOKxdAIhBCiURGFioT8OYNPX4r0wz+9srIyOTmZSqUaGBjY2dnp6ek9fvxYUXUzNTVls9nKE8FmZmaDBw8uLCyMj4+nUqk6OjpWVlZdGcENDQ1cLrfLVtdBFArFwMCgpKQEIdSzZ08FfjdjpO6NyMhIGo3Wq1cve3t7yafIntpxmZmZ+OzjcDiEGTrpFaRQKB4eHkVFRTExMSKRqK6uTuGr+OTJSGGp5YprBTcyEF2IaFykVkxXFyCE9Gze1+UPaMyzr0hzpFIaEEJmrlGIzkRUhIQCwrO5XG5hYSFCKD8/n0ql9urVS1tbu7q6WmHVUyZ2dnYVFRXPnz/HHmZlZdHpXXpeNCoqqitX10FFRUVmZmYlJSV0Ot3IyKigoMDIyEiBy5e6... [truncated]
+2024-12-10 22:59:11,543 - INFO - 
+=== API Response Structure ===
+2024-12-10 22:59:11,543 - INFO - Raw Response Headers:
+2024-12-10 22:59:11,543 - INFO - {
+  "date": "Tue, 10 Dec 2024 22:59:11 GMT",
+  "content-type": "application/json",
+  "transfer-encoding": "chunked",
+  "connection": "keep-alive",
+  "anthropic-ratelimit-requests-limit": "50",
+  "anthropic-ratelimit-requests-remaining": "49",
+  "anthropic-ratelimit-requests-reset": "2024-12-10T22:59:07Z",
+  "anthropic-ratelimit-input-tokens-limit": "40000",
+  "anthropic-ratelimit-input-tokens-remaining": "40000",
+  "anthropic-ratelimit-input-tokens-reset": "2024-12-10T22:59:11Z",
+  "anthropic-ratelimit-output-tokens-limit": "8000",
+  "anthropic-ratelimit-output-tokens-remaining": "8000",
+  "anthropic-ratelimit-output-tokens-reset": "2024-12-10T22:59:11Z",
+  "anthropic-ratelimit-tokens-limit": "48000",
+  "anthropic-ratelimit-tokens-remaining": "48000",
+  "anthropic-ratelimit-tokens-reset": "2024-12-10T22:59:11Z",
+  "request-id": "req_01BYv78owgogqoSjPTp5AbpX",
+  "via": "1.1 google",
+  "cf-cache-status": "DYNAMIC",
+  "x-robots-tag": "none",
+  "server": "cloudflare",
+  "cf-ray": "8f00d7eaf8fdc878-SEA",
+  "content-encoding": "gzip"
+}
+2024-12-10 22:59:11,545 - INFO - 
+Parsed Response:
+2024-12-10 22:59:11,546 - INFO - {
+  "id": "msg_01YVoubVuEF9pR7RuPL9ayz8",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    "BetaTextBlock(text='I see Firefox is already open but showing a restore session dialog. I\\'ll click \"Start New Session\" and then navigate to Google.', type='text')",
+    "BetaToolUseBlock(id='toolu_017WqgPwqu3XmHJc2hTrPtRT', input={'action': 'mouse_move', 'coordinate': [316, 626]}, name='computer', type='tool_use')",
+    "BetaToolUseBlock(id='toolu_01RbyADaCFxvC2GyP2z1WPdd', input={'action': 'left_click'}, name='computer', type='tool_use')",
+    "BetaToolUseBlock(id='toolu_01Pb2KSn4VZLAkdyRXx7KKb1', input={'action': 'mouse_move', 'coordinate': [260, 85]}, name='computer', type='tool_use')",
+    "BetaToolUseBlock(id='toolu_01DaGUjTeXpR5Bhx1FWnDquS', input={'action': 'left_click'}, name='computer', type='tool_use')",
+    "BetaToolUseBlock(id='toolu_01WUMDjMktHkb3reTr8vAe2U', input={'action': 'type', 'text': 'www.google.com'}, name='computer', type='tool_use')",
+    "BetaToolUseBlock(id='toolu_01AiwwUZXwKb929qgRAFpU3R', input={'action': 'key', 'text': 'Return'}, name='computer', type='tool_use')"
+  ],
+  "model": "claude-3-5-sonnet-20241022",
+  "usage": "BetaUsage(cache_creation_input_tokens=None, cache_read_input_tokens=None, input_tokens=3117, output_tokens=340)",
+  "system": null,
+  "stop_reason": "tool_use",
+  "stop_sequence": null
+}
+2024-12-10 22:59:22,428 - INFO - 
+=== API Request Structure ===
+2024-12-10 22:59:22,431 - INFO - {
+  "provider": "anthropic",
+  "model": "claude-3-5-sonnet-20241022",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='open google', type='text')"
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": [
+        "BetaTextBlock(text=\"I'll help you open Google in Firefox. I'll follow these steps:\\n1. Take a screenshot to see the desktop\\n2. Look for and click on Firefox\\n3. Once Firefox opens, navigate to Google\", type='text')",
+        "BetaToolUseBlock(id='toolu_01XWMiDGJdoejjfVxzZusvpP', input={'action': 'screenshot'}, name='computer', type='tool_use')"
+      ]
+    },
+    {
+      "content": [
+        {
+          "type": "tool_result",
+          "content": [
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/png",
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAdYAAALYCAIAAABOmkTgAAAAA3NCSVQICAjb4U/gAAAAGXRFWHRTb2Z0d2FyZQBnbm9tZS1zY3JlZW5zaG907wO/PgAAIABJREFUeJzs3XdcE/f/B/BPBgmQMGQPWQIyBFEQcaA4ceCe2CqOqlVsrW3Vb4d7tP6ss1a0ohU37okiTnAgU1BEhuy9NyFk/f64Nj0vIQQIXLDv58OHD/K5y93nLskrn/vc5y6UixcvIgAAAGSgd8E65ow/i/1xKXR+F6wOAAC6i66IYAAAUHJz5sxp61MuXbqEfzr+oTyrw+antnWt7SEUIZEIiURzRgd1xeoAAKBrXbp0Sf4Qx+d1p7eC5ww6inhMRKMihJBA1NmrAwCA9mlrM1by6fK0hQnzKDKC51SvuqR9eE7D78gAIYQuNaxGCKFaDhKKEFPl73kGH0OIeSlyIf6JkydPVlNTQwgJhcKGhoaCgoL379/zeDxFVaxnz54MBiMzM1NRC+w4IyMjBwcHbW1thFBtbW1BQUFKSkqXrX3UqFFNTU0vX77ssjW2T8+ePYcMGdLc3Hzz5k2RSIQQsrCw8PDwaG5uvnHjhqLWInVvjBw5Ul9fHyEkEokuX75MeIrsqR2hra3t7e1NKMzPzydUr/NeQRMTk759+7LZbCqVGhERUVxcrPBVfMJaTWHJqQqL4Dlv1yFN6hzet4jRg5PTEyHEPOWub52bGPOVtlOKxdAIhBCiURGFioT8OYNPX4r0wz+9srIyOTmZSqUaGBjY2dnp6ek9fvxYUXUzNTVls9nKE8FmZmaDBw8uLCyMj4+nUqk6OjpWVlZdGcENDQ1cLrfLVtdBFArFwMCgpKQEIdSzZ08FfjdjpO6NyMhIGo3Wq1cve3t7yafIntpxmZmZ+OzjcDiEGTrpFaRQKB4eHkVFRTExMSKRqK6uTuGr+OTJSGGp5YprBTcyEF2IaFykVkxXFyCE9Gze1+UPaMyzr0hzpFIaEEJmrlGIzkRUhIQCwrO5XG5hYSFCKD8/n0ql9urVS1tbu7q6WmHVUyZ2dnYVFRXPnz/HHmZlZdHpXXpeNCoqqitX10FFRUVmZmYlJSV0Ot3IyKigoMDIyEiBy5e6... [truncated]
+2024-12-10 22:59:25,516 - INFO - 
+=== API Response Structure ===
+2024-12-10 22:59:25,519 - INFO - Raw Response Headers:
+2024-12-10 22:59:25,519 - INFO - {
+  "date": "Tue, 10 Dec 2024 22:59:25 GMT",
+  "content-type": "application/json",
+  "transfer-encoding": "chunked",
+  "connection": "keep-alive",
+  "anthropic-ratelimit-requests-limit": "50",
+  "anthropic-ratelimit-requests-remaining": "49",
+  "anthropic-ratelimit-requests-reset": "2024-12-10T22:59:23Z",
+  "anthropic-ratelimit-input-tokens-limit": "40000",
+  "anthropic-ratelimit-input-tokens-remaining": "36000",
+  "anthropic-ratelimit-input-tokens-reset": "2024-12-10T22:59:31Z",
+  "anthropic-ratelimit-output-tokens-limit": "8000",
+  "anthropic-ratelimit-output-tokens-remaining": "8000",
+  "anthropic-ratelimit-output-tokens-reset": "2024-12-10T22:59:25Z",
+  "anthropic-ratelimit-tokens-limit": "48000",
+  "anthropic-ratelimit-tokens-remaining": "44000",
+  "anthropic-ratelimit-tokens-reset": "2024-12-10T22:59:25Z",
+  "request-id": "req_01QZcd1vMdCsVbN5o6aHnApU",
+  "via": "1.1 google",
+  "cf-cache-status": "DYNAMIC",
+  "x-robots-tag": "none",
+  "server": "cloudflare",
+  "cf-ray": "8f00d851aecdc545-SEA",
+  "content-encoding": "gzip"
+}
+2024-12-10 22:59:25,519 - INFO - 
+Parsed Response:
+2024-12-10 22:59:25,520 - INFO - {
+  "id": "msg_01RmLHspn32AnatxriqPSF4k",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    "BetaTextBlock(text=\"Great! I've successfully opened Firefox and navigated to Google's homepage. The page is now loaded and ready for use. You can now perform searches or access any other Google services. Is there anything specific you'd like to search for?\", type='text')"
+  ],
+  "model": "claude-3-5-sonnet-20241022",
+  "usage": "BetaUsage(cache_creation_input_tokens=None, cache_read_input_tokens=None, input_tokens=5853, output_tokens=52)",
+  "system": null,
+  "stop_reason": "end_turn",
+  "stop_sequence": null
+}
+2024-12-10 23:02:57,564 - INFO - 
+=== API Request Structure ===
+2024-12-10 23:02:57,566 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='what does the web page say?', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
+2024-12-10 23:04:58,858 - INFO - 
+=== API Request Structure ===
+2024-12-10 23:04:58,859 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='what does the page say?', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
+2024-12-10 23:06:04,023 - INFO - 
+=== API Request Structure ===
+2024-12-10 23:06:04,037 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='what does the page say?', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
+2024-12-10 23:09:30,282 - INFO - 
+=== API Request Structure ===
+2024-12-10 23:09:30,288 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='hi', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
+2024-12-10 23:11:51,858 - INFO - 
+=== API Request Structure ===
+2024-12-10 23:11:51,859 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='does this work?', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
+2024-12-10 23:25:05,002 - INFO - 
+=== API Request Structure ===
+2024-12-10 23:25:05,003 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='does this work now?', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
+2024-12-10 23:28:09,021 - INFO - 
+=== API Request Structure ===
+2024-12-10 23:28:09,022 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='hi', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
+2024-12-10 23:29:44,120 - INFO - 
+=== API Request Structure ===
+2024-12-10 23:29:44,120 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='hi', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
+2024-12-10 23:32:49,577 - INFO - 
+=== API Request Structure ===
+2024-12-10 23:32:49,578 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='hi', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}
+2024-12-10 23:35:18,899 - INFO - 
+=== API Request Structure ===
+2024-12-10 23:35:18,900 - INFO - {
+  "provider": "venice",
+  "model": "most_intelligent",
+  "system": "<SYSTEM_CAPABILITY>\n* You are utilising an Linux computer using x86_64 architecture with internet access.\n* Firefox will be started for you.\n* Using bash tool you can start GUI applications. GUI apps run with bash tool will appear within your desktop environment, but they may take some time to appear. Take a screenshot to confirm it did.\n* When using your bash tool with commands that are expected to output very large quantities of text, redirect into a tmp file and use str_replace_editor or `grep -n -B <lines before> -A <lines after> <query> <filename>` to confirm output.\n* When viewing a page it can be helpful to zoom out so that you can see everything on the page.  Either that, or make sure you scroll down to see everything before deciding something isn't available.\n* When using your computer function calls, they take a while to run and send back to you.  Where possible/feasible, try to chain multiple of these calls all into one function calls request.\n* The current date is Tuesday, December 10, 2024.\n</SYSTEM_CAPABILITY>\n\n<IMPORTANT>\n* When using Firefox, if a startup wizard appears, IGNORE IT.  Do not even click \"skip this step\".  Instead, click on the address bar where it says \"Search or enter address\", and enter the appropriate search term or URL there.\n* If the item you are looking at is a pdf, if after taking a single screenshot of the pdf it seems that you want to read the entire document instead of trying to continue to read the pdf from your screenshots + navigation, determine the URL, use curl to download the pdf, install and use pdftotext to convert it to a text file, and then read that text file directly with your StrReplaceEditTool.\n* When viewing a webpage, first use your computer tool to view it and explore it.  But, if there is a lot of text on that page, instead curl the html of that page to a file on disk and then using your StrReplaceEditTool to view the contents in plain text.\n</IMPORTANT>",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        "TextBlock(text='hello', type='text')"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "computer",
+      "type": "computer_20241022",
+      "display_width_px": 1150,
+      "display_height_px": 1294,
+      "display_number": null
+    },
+    {
+      "name": "bash",
+      "type": "bash_20241022"
+    },
+    {
+      "name": "str_replace_editor",
+      "type": "text_editor_20241022"
+    }
+  ],
+  "max_tokens": 4096
+}

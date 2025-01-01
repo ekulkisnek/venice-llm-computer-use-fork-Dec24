@@ -110,6 +110,18 @@ async def main():
                 _reset_model()
                 st.session_state.provider = st.session_state.provider_radio
                 st.session_state.auth_validated = False
+        # Add dropdown to select the provider
+        provider_choice = st.selectbox(
+            "Select Provider",
+            [APIProvider.ANTHROPIC, APIProvider.BEDROCK, APIProvider.VERTEX, APIProvider.VENICE],  # Added Venice
+            format_func=lambda provider: provider.value.capitalize(),
+        )
+
+        # Update session_state.provider based on dropdown selection
+        if provider_choice != st.session_state.provider:
+            st.session_state.provider = provider_choice
+            _reset_model()
+            st.session_state.auth_validated = False
 
         st.text_input("Model", key="model")
 

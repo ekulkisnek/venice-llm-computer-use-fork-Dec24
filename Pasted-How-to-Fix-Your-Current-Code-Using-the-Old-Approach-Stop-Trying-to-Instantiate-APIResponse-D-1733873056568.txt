@@ -1,0 +1,60 @@
+How to Fix Your Current Code Using the Old Approach:
+
+    Stop Trying to Instantiate APIResponse Directly:
+    Instead of returning APIResponse(...) from _convert_response, return a custom “mock” class that mimics the old VeniceAPIResponse pattern. This class should have:
+        self.http_request and self.http_response attributes that store request and response data.
+        A parse() method that returns a dictionary with "role": "assistant" and "content": [...] exactly like Anthropic’s response.
+
+    Use the Old Pattern for the Venice Adapter:
+    From the old working code, you had something like this inside the sampling loop:
+
+class VeniceAPIResponse:
+    def __init__(self, venice_data, request_data, request_headers):
+        self.http_request = MockRequest(
+            method="POST",
+            url="https://api.venice.ai/api/v1/chat/completions",
+            headers=request_headers,
+            content=json.dumps(request_data).encode("utf-8")
+        )
+        self.http_response = MockResponse(
+            status_code=200,
+            headers={"Content-Type": "application/json"},
+            text=json.dumps(venice_data)
+        )
+        self.venice_data = venice_data
+
+    def parse(self):
+        assistant_content = ""
+        if "choices" in self.venice_data and self.venice_data["choices"]:
+            assistant_content = self.venice_data["choices"][0].get("message", {}).get("content", "")
+        return {
+            "role": "assistant",
+            "content": [{"type": "text", "text": assistant_content}],
+        }
+
+This worked because:
+
+    parse() returns the Anthropic-compatible message format.
+    http_request and http_response attributes exist and contain enough info for api_response_callback and other parts of the system.
+    No direct calls to APIResponse or _construct() methods are made. The system just sees this returned object as an APIResponse-like object due to the cast and doesn’t complain.
+
+Integrate This Class in Your Venice Adapter: In venice_adapter.py, after getting the venice_response (the JSON from Venice), do something like:
+
+venice_data = venice_response
+request_headers = self.headers
+request_data = request_payload
+
+raw_response = VeniceAPIResponse(venice_data, request_data, request_headers)
+return raw_response
+
+Make sure MockRequest and MockResponse classes are defined as before (or copy them from the old working code). They just need to have read() methods and store the necessary properties.
+
+No Need to Call APIResponse Constructor or _construct:
+The old code never instantiated APIResponse directly. It simply returned its custom VeniceAPIResponse object, and then did:
+
+    api_response_callback(cast(APIResponse[BetaMessage], raw_response))
+
+    This cast was enough because api_response_callback just needed an object with the expected interface. The old code’s VeniceAPIResponse provided that interface.
+
+In Short:
+Just revert to the old pattern: create a VeniceAPIResponse mock class that returns the Anthropic-like structure via parse(), has http_request and http_response attributes, and return that object. Do not try to build an actual APIResponse object. This matches exactly what the old code did and will therefore work as it did before.
