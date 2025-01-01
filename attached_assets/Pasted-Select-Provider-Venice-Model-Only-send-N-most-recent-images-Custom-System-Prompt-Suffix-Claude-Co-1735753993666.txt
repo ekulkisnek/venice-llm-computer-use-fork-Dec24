@@ -1,0 +1,43 @@
+Select Provider
+Venice
+
+Model
+
+Only send N most recent images
+
+Custom System Prompt Suffix
+Claude Computer Use Demo
+
+⚠️ Security Alert: Never provide access to sensitive accounts or data, as malicious web content can hijack Claude's behavior
+
+hi venice
+AttributeError: 'VeniceAPIResponse' object has no attribute 'headers'
+Traceback:
+
+File "/home/runner/added-venice-as-provider-Anthropic-venice-Computer-Use/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+File "/home/runner/added-venice-as-provider-Anthropic-venice-Computer-Use/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+File "/home/runner/added-venice-as-provider-Anthropic-venice-Computer-Use/main.py", line 7, in <module>
+    asyncio.run(main())
+File "/nix/store/clx0mcir7qw8zk36zbr4jra789g3knf6-python3-3.11.10/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+File "/nix/store/clx0mcir7qw8zk36zbr4jra789g3knf6-python3-3.11.10/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File "/nix/store/clx0mcir7qw8zk36zbr4jra789g3knf6-python3-3.11.10/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+File "/home/runner/added-venice-as-provider-Anthropic-venice-Computer-Use/computer_use_demo/streamlit.py", line 211, in main
+    st.session_state.messages = await sampling_loop(
+                                ^^^^^^^^^^^^^^^^^^^^
+File "/home/runner/added-venice-as-provider-Anthropic-venice-Computer-Use/computer_use_demo/loop.py", line 173, in sampling_loop
+    api_response_callback(cast(APIResponse[BetaMessage], raw_response))
+File "/home/runner/added-venice-as-provider-Anthropic-venice-Computer-Use/computer_use_demo/streamlit.py", line 271, in _api_response_callback
+    _render_api_response(response, response_id, tab)
+File "/home/runner/added-venice-as-provider-Anthropic-venice-Computer-Use/computer_use_demo/streamlit.py", line 294, in _render_api_response
+    f"`{response.http_response.status_code}`{newline}{newline.join(f'`{k}: {v}`' for k, v in response.headers.items())}"
+                                                                                             ^^^^^^^^^^^^^^^^
+
