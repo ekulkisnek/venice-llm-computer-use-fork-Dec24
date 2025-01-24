@@ -1,5 +1,5 @@
 
-# Claude Computer Use Demo
+# Adding Venice LLM API as proivder for Anthropic computer use demo
 
 An interactive demo showcasing Claude's ability to control a computer through a Streamlit interface. This project allows Claude to perform various computer operations while providing a safe and controlled environment.
 
